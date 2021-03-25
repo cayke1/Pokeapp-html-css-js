@@ -23,7 +23,7 @@ function master (num) {
                 count = count * 0;
             })
             btn.addEventListener('click', () => {
-                const resposta = document.getElementById('response').value;
+                const resposta = (document.getElementById('response').value).toLowerCase();
                     if (resposta == pokemon) {
                         Swal.fire({
                             icon: 'success',
