@@ -36,7 +36,7 @@ function master (num) {
                             icon: 'error',
                             title: "It's " + pokemon
                           });
-                        //   count = count * 0;
+                       
                         master(Math.floor(Math.random()*897) +1);
                     }
                 // counter.innerHTML= count;
