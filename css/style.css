@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+html body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.boxx {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://i.redd.it/e2aiwmfjv0g51.png");
+}
+
+.content1 {
+    width: 500px;
+    height: 200px;
+    background-color: #9200c2cb;
+    border: 2px solid #75fee4;
+    border-radius: 15px;
+    text-align: center;
+    padding: 3em;
+    color: white;
+}
+
+/*FORM*/
+
+input {
+    width: 100%;
+    height: 30px;
+    margin: 10px;
+    background-color: #9200c2cb;
+    border: 2px solid #75fee4;
+    font-family: 'Press Start 2P';
+    color: orange;
+}
+
+input:focus {
+    /* background-color: #75fee4; */
+    text-decoration: none;
+}
+
+button {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #75fee4;
+    margin-top: 1em;
+    font-family: 'Press Start 2P';
+    background-color: #75fee4;
+}
+
+/*IMAGE MODAL*/
+.modal { /* MODAL (background)*/
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content{
+    background-color: #9200c2cb;
+    margin: 15% auto;
+    padding: 20px;
+    border: 3px solid #75fee4;
+    max-width: 25%;
+}
+
+.close {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #75fee4;
+    margin-top: 1em;
+    font-family: 'Press Start 2P';
+    background-color: #75fee4;
+}
+
+.close:hover, .close:focus{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.modal-content img {
+        max-width: 100%;
+}
+
+#counter{
+    color: orange;
+}
