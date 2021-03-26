@@ -30,6 +30,10 @@ html body {
 
 /*FORM*/
 
+#bs {
+    font-size: xx-small;
+}
+
 input {
     width: 100%;
     height: 30px;
@@ -96,4 +100,36 @@ button {
 
 #counter{
     color: orange;
+}
+
+@media (max-width: 580px) {
+    .content1 h2 {
+        font-size: medium;
+    }
+}
+
+@media (max-width: 520px) {
+    button {
+        width: 150px;
+    }
+}
+
+@media (max-width: 450px) {
+    #reload {
+        margin-top: 0.5em;
+        clear: both;
+    }
+    #btn-1 {
+        float: left;
+    }
+    #btn-2 {
+        float: right;
+    }
+}
+
+@media (max-width:405px) {
+    button {
+        width: 100px;
+        font-size: small;
+    }
 }

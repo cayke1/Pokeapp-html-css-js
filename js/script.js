@@ -3,11 +3,13 @@ const btn = document.getElementById('btn-1');
 const img = document.querySelector('img');
 const reload = document.getElementById('reload');
 const counter = document.getElementById('counter');
+const bs = document.getElementById('bs');
 let count = 0;
 let pokemon,
-    fota
+    fota,
+    best
 
-window.onload = master();
+window.onload = master(), showBest();
 
 
 function master () {
@@ -34,10 +36,12 @@ btn.addEventListener('click', () => {
               });
                count = count + 100;
                master();
+               localStorage.setItem('best', count);
         } else {
             Swal.fire({
                 icon: 'error',
-                title: "It's " + pokemon
+                title: "It's " + pokemon,
+                text: 'Your streak was ' + count
               });
               count = 0;
               master();
@@ -54,3 +58,8 @@ reload.addEventListener('click', () => {
         }, 950);
     }, 10);
 })
+
+function showBest() {
+    best = localStorage.getItem('best');
+    bs.innerHTML = 'Your best streak is: ' + best;
+}
