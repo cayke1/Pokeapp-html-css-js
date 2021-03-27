@@ -37,6 +37,7 @@ btn.addEventListener('click', () => {
                count = count + 100;
                master();
                localStorage.setItem('best', count);
+               showBest();
         } else {
             Swal.fire({
                 icon: 'error',
