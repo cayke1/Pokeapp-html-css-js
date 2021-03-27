@@ -13,7 +13,7 @@ window.onload = master(), showBest();
 
 
 function master () {
-    fetch(baseUrl + (Math.floor(Math.random()*897) +1), {
+    fetch(baseUrl + (Math.floor(Math.random()*150) +1), {
         method: 'GET',
     })
     
