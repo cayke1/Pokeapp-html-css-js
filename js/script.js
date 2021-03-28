@@ -62,5 +62,10 @@ reload.addEventListener('click', () => {
 
 function showBest() {
     best = localStorage.getItem('best');
-    bs.innerHTML = 'Your best streak is: ' + best;
+    console.log(best);
+    if (best != null & best != undefined) {        
+        bs.innerHTML = 'Your best streak is: ' + best;
+    } else {
+        bs.innerHTML = 'Your best streak is : 0'
+    }
 }
