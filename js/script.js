@@ -38,6 +38,7 @@ btn.addEventListener('click', () => {
                master();
                localStorage.setItem('best', count);
                showBest();
+        document.getElementById('response').value = "";
         } else {
             Swal.fire({
                 icon: 'error',
@@ -46,6 +47,7 @@ btn.addEventListener('click', () => {
               });
               count = 0;
               master();
+        document.getElementById('response').value = "";
         }
 })
 
