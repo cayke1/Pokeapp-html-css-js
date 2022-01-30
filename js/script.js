@@ -61,8 +61,12 @@ btn.addEventListener('click', () => {
                 best: numberbest
             }
             if (nome != null && best > 0) { 
-                fetch('https://9ppj8wswo1.execute-api.sa-east-1.amazonaws.com/desenvolvimento/registrar-placar', {
+                fetch('https://bl0smhb6ye.execute-api.sa-east-1.amazonaws.com/dev/registrarPlacar', {
                     method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      },
                     body: dados
                 }).then((response) => {
                     console.log(response);
