@@ -1,5 +1,7 @@
 const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
 const btn = document.getElementById('btn-1');
+const btn_name = document.getElementById('btn-name');
+const namer = document.getElementById('namer');
 const img = document.querySelector('img');
 const reload = document.getElementById('reload');
 const counter = document.getElementById('counter');
@@ -11,7 +13,12 @@ let pokemon,
 
 window.onload = master(), showBest();
 
-
+btn_name.addEventListener('click', () => {
+    NomeS = namer.value;
+    if(NomeS.length >= 1){
+    localStorage.setItem('nome', NomeS);
+}
+})
 function master () {
     fetch(baseUrl + (Math.floor(Math.random()*150) +1), {
         method: 'GET',
@@ -28,7 +35,7 @@ function master () {
 }
 
 btn.addEventListener('click', () => {
-    const resposta = (document.getElementById('response').value).toLowerCase();
+    const resposta = (document.getElementById('response').value).toLowerCase();    
         if (resposta == pokemon) {
             Swal.fire({
                 icon: 'success',
@@ -47,6 +54,21 @@ btn.addEventListener('click', () => {
               });
               count = 0;
               master();
+            nome = localStorage.getItem('nome');
+            numberbest = parseInt(best);
+            var dados = {
+                nome: nome,
+                best: numberbest
+            }
+            if (nome != null && best > 0) { 
+                fetch('https://9ppj8wswo1.execute-api.sa-east-1.amazonaws.com/desenvolvimento/registrar-placar', {
+                    method: 'POST',
+                    body: dados
+                }).then((response) => {
+                    console.log(response);
+                });
+             }
+             
         document.getElementById('response').value = "";
         }
 })
@@ -64,7 +86,6 @@ reload.addEventListener('click', () => {
 
 function showBest() {
     best = localStorage.getItem('best');
-    console.log(best);
     if (best != null & best != undefined) {        
         bs.innerHTML = 'Your best streak is: ' + best;
     } else {
