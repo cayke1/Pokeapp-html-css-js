@@ -67,6 +67,7 @@ btn.addEventListener('click', () => {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                       },
+                    mode: 'cors',
                     body: dados
                 }).then((response) => {
                     console.log(response);
