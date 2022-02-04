@@ -15,69 +15,60 @@ window.onload = master(), showBest();
 
 btn_name.addEventListener('click', () => {
     NomeS = namer.value;
-    if(NomeS.length >= 1){
-    localStorage.setItem('nome', NomeS);
-}
+    if (NomeS.length >= 1) {
+        localStorage.setItem('nome', NomeS);
+    }
 })
-function master () {
-    fetch(baseUrl + (Math.floor(Math.random()*150) +1), {
+function master() {
+    fetch(baseUrl + (Math.floor(Math.random() * 150) + 1), {
         method: 'GET',
     })
-    
-    .then(function(response){
-        response.json().then(data => {
-            pokemon = data.forms[0].name;
-            fota = data.sprites.other['official-artwork'].front_default;
-            img.setAttribute('src', fota);
-            counter.innerHTML= count;
-        });    
-    });
+
+        .then(function (response) {
+            response.json().then(data => {
+                pokemon = data.forms[0].name;
+                fota = data.sprites.other['official-artwork'].front_default;
+                img.setAttribute('src', fota);
+                counter.innerHTML = count;
+            });
+        });
 }
 
 btn.addEventListener('click', () => {
-    const resposta = (document.getElementById('response').value).toLowerCase();    
-        if (resposta == pokemon) {
-            Swal.fire({
-                icon: 'success',
-                title: "You done, it's " + pokemon
-              });
-               count = count + 100;
-               master();
-               localStorage.setItem('best', count);
-               showBest();
+    const resposta = (document.getElementById('response').value).toLowerCase();
+    if (resposta == pokemon) {
+        Swal.fire({
+            icon: 'success',
+            title: "You done, it's " + pokemon
+        });
+        count = count + 100;
+        master();
+        localStorage.setItem('best', count);
+        showBest();
         document.getElementById('response').value = "";
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: "It's " + pokemon,
-                text: 'Your streak was ' + count
-              });
-              count = 0;
-              master();
-            nome = localStorage.getItem('nome');
-            numberbest = parseInt(best);
-            var dados = {
-                nome: nome,
-                best: numberbest
-            }
-            if (nome != null && best > 0) { 
-                fetch('https://bl0smhb6ye.execute-api.sa-east-1.amazonaws.com/dev/registrarPlacar', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                      },
-                    body: dados
-                }).then((response) => {
-                    console.log(response);
-                });
-             }
-             
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: "It's " + pokemon,
+            text: 'Your streak was ' + count
+        });
+        count = 0;
+        master();
+        // nome = localStorage.getItem('nome');
+        // numberbest = parseInt(best);
+        // var dados = {
+        //     nome: nome,
+        //     best: numberbest
+        // }
+        // if (nome != null && best > 0) {
+        //     sendPlacar(dados);
+        // }
+
         document.getElementById('response').value = "";
-        }
+    }
 })
 
-reload.addEventListener('click', () => { 
+reload.addEventListener('click', () => {
     master();
     count = 0;
     setTimeout(() => {
@@ -90,7 +81,7 @@ reload.addEventListener('click', () => {
 
 function showBest() {
     best = localStorage.getItem('best');
-    if (best != null & best != undefined) {        
+    if (best != null & best != undefined) {
         bs.innerHTML = 'Your best streak is: ' + best;
     } else {
         bs.innerHTML = 'Your best streak is : 0'
