@@ -6,7 +6,8 @@ var span = document.getElementsByClassName('close')[1];
 var closeButton = document.getElementById('closeModal2');
 var nick = localStorage.getItem('nome');
 
-window.onload = function (){
+window.onload = function() {
+    modal.style.display = 'block';
     if (nick === null) {
         modal2.style.display = 'block';
     }
@@ -21,7 +22,7 @@ btnName.onclick = function() {
 }
 
 closeButton.onclick = function() {
-    modal2.style.display = 'none';    
+    modal2.style.display = 'none';
 }
 
 span.onclick = function() {

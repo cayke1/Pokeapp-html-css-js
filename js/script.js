@@ -6,6 +6,7 @@ const img = document.querySelector('img');
 const reload = document.getElementById('reload');
 const counter = document.getElementById('counter');
 const bs = document.getElementById('bs');
+const players = document.getElementsByClassName('player');
 let count = 0;
 let pokemon,
     photo,
@@ -38,9 +39,10 @@ function master() {
     });
 
     axios.get('https://poke-ranking.herokuapp.com/users').then((res) => {
-        res.data.forEach((t) => {
-            console.log(t.name, t.best);
-        })
+        for (i in players) {
+            players[i].innerHTML = `${res.data[i].name} : ${res.data[i].best}`;
+            console.log(i)
+        }
     })
 }
 

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
 html body {
     font-family: 'Press Start 2P', cursive;
     margin: 0;
@@ -32,6 +31,7 @@ html body {
     text-transform: uppercase;
 }
 
+
 /*FORM*/
 
 #bs {
@@ -62,19 +62,24 @@ button {
     background-color: #75fee4;
 }
 
+
 /*IMAGE MODAL*/
+
 .modal-first p {
     margin: 0, auto;
     text-align: center;
     color: white;
 }
+
 .modal-first input {
     margin: 0;
 }
+
 .modal-first {
     height: 150px;
     position: relative;
 }
+
 .modal-first button {
     width: 70%;
     margin: 0;
@@ -84,7 +89,9 @@ button {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-.modal { /* MODAL (background)*/
+
+.modal {
+    /* MODAL (background)*/
     display: none;
     position: fixed;
     z-index: 1;
@@ -96,7 +103,7 @@ button {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content{
+.modal-content {
     background-color: #9200c2cb;
     margin: 15% auto;
     padding: 20px;
@@ -113,22 +120,47 @@ button {
     background-color: #75fee4;
 }
 
-.close:hover, .close:focus{
+.close:hover,
+.close:focus {
     text-decoration: none;
     cursor: pointer;
 }
 
-
 .modal-content img {
-        max-width: 100%;
+    max-width: 100%;
 }
 
-#counter{
+#counter {
     color: orange;
 }
 
+.ranking {
+    max-width: 25%;
+    min-width: 15%;
+    height: 35vh;
+    background-color: #9200c2cb;
+    position: absolute;
+    top: 1.25rem;
+    left: 1.20rem;
+    border-radius: 10%;
+    border: 2px solid #75fee4;
+}
 
-@media (min-width: 800px){
+.ranking ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.ranking ul li {
+    margin: 1rem 0.1rem;
+    color: orange;
+}
+
+@media (min-width: 800px) {
     .modal-first button {
         margin: 0;
         position: absolute;
@@ -139,7 +171,7 @@ button {
     }
 }
 
-@media (min-width: 600px) and (max-width:800px){
+@media (min-width: 600px) and (max-width:800px) {
     .modal-first {
         font-size: medium;
         height: 180px;
@@ -168,7 +200,7 @@ button {
     }
 }
 
-@media (min-width: 300px) and (max-width:500px){
+@media (min-width: 300px) and (max-width:500px) {
     .modal-first {
         font-size: 11px;
     }
