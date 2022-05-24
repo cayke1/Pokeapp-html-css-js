@@ -8,30 +8,40 @@ const counter = document.getElementById('counter');
 const bs = document.getElementById('bs');
 let count = 0;
 let pokemon,
-    fota,
-    best
+    photo,
+    best,
+    placar
 
 window.onload = master(), showBest();
+
+
 
 btn_name.addEventListener('click', () => {
     NomeS = namer.value;
     if (NomeS.length >= 1) {
         localStorage.setItem('nome', NomeS);
     }
-})
+});
+
 function master() {
     fetch(baseUrl + (Math.floor(Math.random() * 150) + 1), {
         method: 'GET',
     })
 
-        .then(function (response) {
-            response.json().then(data => {
-                pokemon = data.forms[0].name;
-                fota = data.sprites.other['official-artwork'].front_default;
-                img.setAttribute('src', fota);
-                counter.innerHTML = count;
-            });
+    .then(function(response) {
+        response.json().then(data => {
+            pokemon = data.forms[0].name;
+            photo = data.sprites.other['official-artwork'].front_default;
+            img.setAttribute('src', photo);
+            counter.innerHTML = count;
         });
+    });
+
+    axios.get('https://poke-ranking.herokuapp.com/users').then((res) => {
+        res.data.forEach((t) => {
+            console.log(t.name, t.best);
+        })
+    })
 }
 
 btn.addEventListener('click', () => {
@@ -54,16 +64,15 @@ btn.addEventListener('click', () => {
         });
         count = 0;
         master();
-        // nome = localStorage.getItem('nome');
-        // numberbest = parseInt(best);
-        // var dados = {
-        //     nome: nome,
-        //     best: numberbest
-        // }
-        // if (nome != null && best > 0) {
-        //     sendPlacar(dados);
-        // }
-
+        nome = localStorage.getItem('nome');
+        numberbest = parseInt(best);
+        var dados = {
+                name: nome,
+                best: numberbest
+            }
+            // if (nome != null && best > 0) {
+            //     sendPlacar(dados);
+            // }
         document.getElementById('response').value = "";
     }
 })
