@@ -8,6 +8,7 @@ const counter = document.getElementById('counter');
 const bs = document.getElementById('bs');
 const players = document.getElementsByClassName('player');
 let count = 0;
+let names = [];
 let pokemon,
     photo,
     best,
@@ -15,13 +16,23 @@ let pokemon,
 
 window.onload = master(), showBest();
 
+axios.get('https://poke-ranking.herokuapp.com/users/all').then((res) => {
+    res.data.forEach((e) => {
+        names.push(e.name);
+    });
+});
 
 
-btn_name.addEventListener('click', () => {
-    NomeS = namer.value;
-    if (NomeS.length >= 1) {
-        localStorage.setItem('nome', NomeS);
+btn_name.addEventListener('click', async() => {
+    console.log(names)
+    inputName = namer.value.toUpperCase();
+    let verify = names.includes(inputName);
+    if (verify) {
+        alert('This name already exists, please reload');
+    } else if (inputName.length >= 1) {
+        localStorage.setItem('nome', inputName);
     }
+    master();
 });
 
 function master() {
@@ -41,9 +52,33 @@ function master() {
     axios.get('https://poke-ranking.herokuapp.com/users').then((res) => {
         for (i in players) {
             players[i].innerHTML = `${res.data[i].name} : ${res.data[i].best}`;
-            console.log(i)
         }
-    })
+    });
+
+    nome = localStorage.getItem('nome');
+    best = localStorage.getItem('best');
+
+    if (names.includes(nome)) {
+        axios.put('https://poke-ranking.herokuapp.com/users/update', {
+            name: nome,
+            best
+        }).then(console.log('All right')).catch(err => {
+            if (err) {
+                console.log(err);
+            }
+        })
+    } else {
+        axios.post('https://poke-ranking.herokuapp.com/users/create', {
+            name: nome,
+            best
+        }).then(() => {
+            console.log('All right');
+        }).catch(err => {
+            if (err) {
+                console.log(err);
+            }
+        });
+    }
 }
 
 btn.addEventListener('click', () => {
@@ -66,16 +101,6 @@ btn.addEventListener('click', () => {
         });
         count = 0;
         master();
-        nome = localStorage.getItem('nome');
-        numberbest = parseInt(best);
-        var dados = {
-                name: nome,
-                best: numberbest
-            }
-            // if (nome != null && best > 0) {
-            //     sendPlacar(dados);
-            // }
-        document.getElementById('response').value = "";
     }
 })
 
